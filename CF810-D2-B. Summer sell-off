@@ -1,0 +1,28 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main(){
+    int n, f, sum, res;
+    cin >> n >> f;
+    int k[n], l[n], d[n];
+    sum = 0;
+
+    for (int i = 0; i < n; i ++){
+        int k[i], l[i];
+        cin >> k[i] >> l[i];
+        sum += min(k[i], l[i]);
+        if (min(2*k[i], l[i]) > min(k[i], l[i])){
+            d[i] = min(2*k[i], l[i]);
+        }
+        else d[i] = min(k[i], l[i]);
+        d[i] -= min(k[i], l[i]);
+    }
+    res = sum;
+    sort(d, d+n, greater<int>());
+    for (int i = 0; i < f; i ++){
+        res += d[i];
+    }
+    
+    cout << res << endl;
+}
