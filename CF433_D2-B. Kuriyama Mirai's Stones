@@ -1,0 +1,44 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main(){
+    int n, m;
+    cin >> n;
+    int num[n];
+    for (int i = 0; i < n; i ++){
+        int x;
+        cin >> x;
+        num[i] = x;
+    }
+    cin >> m;
+    int type, l, r;
+    long long res;
+    while(m--){
+        cin >> type >> l >> r;
+        if (type == 1){
+            int num_[n];
+            for (int i = 0; i < n; i ++){
+                num_[i] = num[i];
+            }
+            for (int i = 1; i < n; i ++){
+                num_[i] = num_[i] + num_[i-1];
+            }
+            if (l>1) res = num_[r-1] - num_[l-2];
+            else res = num_[r-1];
+        }
+        else{
+            int stn[n];
+            for (int i = 0; i < n; i ++){
+                stn[i] = num[i];
+            }
+            sort(stn, stn+n);
+            for (int i = 1; i < n; i ++){
+                stn[i] = stn[i] + stn[i-1];
+            }
+            if (l>1) res = stn[r-1] - stn[l-2];
+            else res = stn[r-1];
+        }
+        cout << res << endl;
+    }
+}
